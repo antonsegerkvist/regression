@@ -20,7 +20,7 @@ or use your favorite dependency management tool.
 [Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
 <br>
-<a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewLinearRegression2D64</b>() ·
+<a href="#regressionLinear">#</a> regression.<b>NewLinearRegression2D64</b>() ·
 [Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
 
@@ -28,11 +28,11 @@ Creates a new linear regression structure with a zero coefficient vector.
 
 ![Linear regression](assets/linear-regression.png "Linear regression")
 
-<a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewExponentialRegression2D32</b>() ·
+<a name="regressionExponential" href="#regressionExponential">#</a> regression.<b>NewExponentialRegression2D32</b>() ·
 [Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
 <br>
-<a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewExponentialRegression2D64</b>() ·
+<a href="#regressionExponential">#</a> regression.<b>NewExponentialRegression2D64</b>() ·
 [Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
 
