@@ -26,6 +26,16 @@ or use your favorite dependency management tool.
 
 Creates a new linear regression structure with a zero coefficient vector.
 
-![Linear regression](assets/linear-regression.png "Logo Title Text 1")
+![Linear regression](assets/linear-regression.png "Linear regression")
 
-<a name="regressionLinear" href="#regressionLinear">#</a> <b>Exponential Regression</b> · [Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"), [Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
+<a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewExponentialRegression2D32</b>() ·
+[Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
+[Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
+<br>
+<a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewExponentialRegression2D64</b>() ·
+[Source](https://github.com/antonsegerkvist/regression-go/blob/master/regression.go "Source"),
+[Example](https://github.com/antonsegerkvist/regression-go/blob/master/examples "Example")
+
+Creates a new exponential regression structure with a zero coefficient vector.
+
+![Exponential regression](assets/exponential-regression.png "Exponential regression")
