@@ -30,15 +30,15 @@ Creates a new linear regression structure with a zero coefficient vector.
 ![Linear regression](assets/linear-regression.png "Linear regression")
 
 
-<a name="regressionPolynomial" href="#regressionPolynomial">#</a> regression.<b>NewPolynomialRegression2D64</b>() ·
+<a name="regressionPolynomial" href="#regressionPolynomial">#</a> regression.<b>NewPolynomialRegression2D32</b>(order) ·
 [Source](https://github.com/antonsegerkvist/regression/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression/blob/master/examples "Example")
 <br>
-<a href="#regressionPolynomial">#</a> regression.<b>NewPolynomialRegression2D64</b>() ·
+<a href="#regressionPolynomial">#</a> regression.<b>NewPolynomialRegression2D64</b>(order) ·
 [Source](https://github.com/antonsegerkvist/regression/blob/master/regression.go "Source"),
 [Example](https://github.com/antonsegerkvist/regression/blob/master/examples "Example")
 
-Creates a new polynomial regression structure with a zero coefficient vector.
+Creates a new polynomial regression structure of order ```order``` and with a zero coefficient vector.
 
 ![Polynomial regression](assets/polynomial-regression.png "Polynomial regression")
 
