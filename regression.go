@@ -284,6 +284,141 @@ func (er ExponentialRegression2D64) Predict(x float64) float64 {
 }
 
 /****************************
+ * PolynomialRegression2D32 *
+ ****************************/
+
+//
+// PolynomialRegression2D32 contains methods for performing polynomial regression on a
+// two dimensional data set using 32 bit precission.
+//
+type PolynomialRegression2D32 struct {
+	Order        int
+	Coefficients []float32
+}
+
+//
+// NewPolynomialRegression2D32 creates an instance PolynomialRegression2D32.
+//
+func NewPolynomialRegression2D32(order int) *PolynomialRegression2D32 {
+
+	coefficients := []float32{}
+	for i := 0; i <= order; i++ {
+		coefficients = append(coefficients, 0)
+	}
+
+	return &PolynomialRegression2D32{
+		Order:        order,
+		Coefficients: coefficients,
+	}
+
+}
+
+//
+// Train calculates the coefficient vector from the provided data set.
+//
+func (pr *PolynomialRegression2D32) Train(points *[]Point2D32) error {
+
+	for i := range pr.Coefficients {
+		pr.Coefficients[i] = 0
+	}
+
+	matrix := [][]float32{}
+	for i := 0; i <= pr.Order; i++ {
+		matrix = append(matrix, []float32{})
+		for j := 0; j <= pr.Order; j++ {
+			matrix[i] = append(matrix[i], 0)
+		}
+	}
+
+	for i := 0; i <= pr.Order; i++ {
+		for j := i; j <= pr.Order; j++ {
+			var tmp float32 = 0
+
+			for _, v := range *points {
+				tmp += float32(math.Pow(float64(v.X), float64(i+j)))
+			}
+
+			matrix[i][j] = tmp
+			matrix[j][i] = tmp
+		}
+	}
+
+	vector := []float32{}
+	for i := 0; i <= pr.Order; i++ {
+		var tmp float32 = 0
+
+		for _, v := range *points {
+			tmp += v.Y * float32(math.Pow(float64(v.X), float64(i)))
+		}
+
+		vector = append(vector, tmp)
+	}
+
+	var h int = 0
+	var k int = 0
+
+	for h <= pr.Order && k <= pr.Order {
+		maxRowIndex := 0
+		var maxRowValue float32 = 0
+
+		for i := h; i <= pr.Order; i++ {
+			if maxRowValue < float32(math.Abs(float64(matrix[i][k]))) {
+				maxRowIndex = i
+				maxRowValue = float32(math.Abs(float64(matrix[i][k])))
+			}
+		}
+
+		if maxRowValue == 0 {
+			return ErrUndeterminedSystem
+		}
+
+		temp1 := vector[h]
+		vector[h] = vector[maxRowIndex]
+		vector[maxRowIndex] = temp1
+
+		for i := k; i <= pr.Order; i++ {
+			temp2 := matrix[h][i]
+			matrix[h][i] = matrix[maxRowIndex][i]
+			matrix[maxRowIndex][i] = temp2
+		}
+
+		for i := h + 1; i <= pr.Order; i++ {
+			f := matrix[i][k] / matrix[h][k]
+			matrix[i][k] = 0
+			vector[i] = vector[i] - vector[h]*f
+			for j := k + 1; j <= pr.Order; j++ {
+				matrix[i][j] = matrix[i][j] - matrix[h][j]*f
+			}
+		}
+
+		h++
+		k++
+	}
+
+	for i := pr.Order; i >= 0; i-- {
+		pr.Coefficients[i] = vector[i]
+		for j := i + 1; j <= pr.Order; j++ {
+			pr.Coefficients[i] -= matrix[i][j] * pr.Coefficients[j]
+		}
+		pr.Coefficients[i] /= matrix[i][i]
+	}
+
+	return nil
+
+}
+
+//
+// Predict calculates the regression value at the given coordinate.
+//
+func (pr PolynomialRegression2D32) Predict(x float32) float32 {
+	var ret float32 = 0
+	for i, v := range pr.Coefficients {
+		ret += float32(math.Pow(float64(x), float64(i))) * v
+	}
+	return ret
+}
+
+/****************************
  * PolynomialRegression2D64 *
  ****************************/
 
