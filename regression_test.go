@@ -232,3 +232,63 @@ func TestPolynomialRegression64(t *testing.T) {
 	}
 
 }
+
+func TestLogarithmicRegression32(t *testing.T) {
+
+	tests := [][]regression.Point32{
+		[]regression.Point32{
+			{X: 1, Y: 0},
+			{X: 2, Y: 2},
+			{X: 3, Y: 3},
+		},
+	}
+
+	predictions := []float32{
+		0.0257893995,
+	}
+
+	for i, test := range tests {
+		logarithmicRegression := regression.NewLogarithmicRegression32()
+
+		err := logarithmicRegression.Train(&test)
+		if err != nil {
+			t.Errorf("Got prediction error; expected prediction %f", predictions[i])
+		}
+		prediction := logarithmicRegression.Predict(1)
+
+		if math.Abs(float64(prediction-predictions[i])) >= PRECISSION_EPS {
+			t.Errorf("Got prediction %f; expected prediction %f", prediction, predictions[i])
+		}
+	}
+
+}
+
+func TestLogarithmicRegression64(t *testing.T) {
+
+	tests := [][]regression.Point64{
+		[]regression.Point64{
+			{X: 1, Y: 0},
+			{X: 2, Y: 2},
+			{X: 3, Y: 3},
+		},
+	}
+
+	predictions := []float64{
+		0.0257893995,
+	}
+
+	for i, test := range tests {
+		logarithmicRegression := regression.NewLogarithmicRegression64()
+
+		err := logarithmicRegression.Train(&test)
+		if err != nil {
+			t.Errorf("Got prediction error; expected prediction %f", predictions[i])
+		}
+		prediction := logarithmicRegression.Predict(1)
+
+		if math.Abs(prediction-predictions[i]) >= PRECISSION_EPS {
+			t.Errorf("Got prediction %f; expected prediction %f", prediction, predictions[i])
+		}
+	}
+
+}
