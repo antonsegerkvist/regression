@@ -20,17 +20,17 @@ var ErrUndeterminedSystem error = errors.New("The system is undetermined")
  ************/
 
 //
-// Point2D32 contains coordinates in 2D euclidian space with 32 bit precision.
+// Point32 contains coordinates in two dimensional euclidian space with 32 bit precision.
 //
-type Point2D32 struct {
+type Point32 struct {
 	X float32
 	Y float32
 }
 
 //
-// Point2D64 contains coordinates in 2D euclidian space with 64 bit precision.
+// Point64 contains coordinates in two dimensional euclidian space with 64 bit precision.
 //
-type Point2D64 struct {
+type Point64 struct {
 	X float64
 	Y float64
 }
@@ -40,23 +40,23 @@ type Point2D64 struct {
  **************/
 
 /************************
- * LinearRegression2D32 *
+ * LinearRegression32 *
  ************************/
 
 //
-// LinearRegression2D32 contains methods for performing linear regression on a
+// LinearRegression32 contains methods for performing linear regression on a
 // two dimensional data set using 64 bit precission.
 //
-type LinearRegression2D32 struct {
+type LinearRegression32 struct {
 	Order        int
 	Coefficients []float32
 }
 
 //
-// NewLinearRegression2D32 creates an instance LinearRegression2D32.
+// NewLinearRegression32 creates an instance LinearRegression32.
 //
-func NewLinearRegression2D32() *LinearRegression2D32 {
-	return &LinearRegression2D32{
+func NewLinearRegression32() *LinearRegression32 {
+	return &LinearRegression32{
 		Order:        2,
 		Coefficients: []float32{0, 0},
 	}
@@ -65,7 +65,7 @@ func NewLinearRegression2D32() *LinearRegression2D32 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (lg *LinearRegression2D32) Train(points *[]Point2D32) error {
+func (lg *LinearRegression32) Train(points *[]Point32) error {
 
 	if len(*points) < 2 {
 		return ErrUndeterminedSystem
@@ -97,28 +97,28 @@ func (lg *LinearRegression2D32) Train(points *[]Point2D32) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (lg LinearRegression2D32) Predict(x float32) float32 {
+func (lg LinearRegression32) Predict(x float32) float32 {
 	return lg.Coefficients[0] + lg.Coefficients[1]*x
 }
 
 /************************
- * LinearRegression2D64 *
+ * LinearRegression64 *
  ************************/
 
 //
-// LinearRegression2D64 contains methods for performing linear regression on a
+// LinearRegression64 contains methods for performing linear regression on a
 // two dimensional data set using 64 bit precission.
 //
-type LinearRegression2D64 struct {
+type LinearRegression64 struct {
 	Order        int
 	Coefficients []float64
 }
 
 //
-// NewLinearRegression2D64 creates an instance LinearRegression2D64.
+// NewLinearRegression64 creates an instance LinearRegression64.
 //
-func NewLinearRegression2D64() *LinearRegression2D64 {
-	return &LinearRegression2D64{
+func NewLinearRegression64() *LinearRegression64 {
+	return &LinearRegression64{
 		Order:        2,
 		Coefficients: []float64{0, 0},
 	}
@@ -127,7 +127,7 @@ func NewLinearRegression2D64() *LinearRegression2D64 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (lr *LinearRegression2D64) Train(points *[]Point2D64) error {
+func (lr *LinearRegression64) Train(points *[]Point64) error {
 
 	if len(*points) < 2 {
 		return ErrUndeterminedSystem
@@ -159,27 +159,27 @@ func (lr *LinearRegression2D64) Train(points *[]Point2D64) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (lr LinearRegression2D64) Predict(x float64) float64 {
+func (lr LinearRegression64) Predict(x float64) float64 {
 	return lr.Coefficients[0] + lr.Coefficients[1]*x
 }
 
 /*****************************
- * ExponentialRegression2D32 *
+ * ExponentialRegression32 *
  *****************************/
 
 //
-// ExponentialRegression2D32 contains methods for performing exponential
+// ExponentialRegression32 contains methods for performing exponential
 // regression on a two dimensional data set using 32 bit precission.
 //
-type ExponentialRegression2D32 struct {
+type ExponentialRegression32 struct {
 	Coefficients []float32
 }
 
 //
-// NewExponentialRegression2D32 creates an instance ExponentialRegression2D32.
+// NewExponentialRegression32 creates an instance ExponentialRegression32.
 //
-func NewExponentialRegression2D32() *ExponentialRegression2D32 {
-	return &ExponentialRegression2D32{
+func NewExponentialRegression32() *ExponentialRegression32 {
+	return &ExponentialRegression32{
 		Coefficients: []float32{0, 0},
 	}
 }
@@ -187,7 +187,7 @@ func NewExponentialRegression2D32() *ExponentialRegression2D32 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (er *ExponentialRegression2D32) Train(points *[]Point2D32) error {
+func (er *ExponentialRegression32) Train(points *[]Point32) error {
 
 	if len(*points) < 2 {
 		return ErrUndeterminedSystem
@@ -219,27 +219,27 @@ func (er *ExponentialRegression2D32) Train(points *[]Point2D32) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (er ExponentialRegression2D32) Predict(x float32) float32 {
+func (er ExponentialRegression32) Predict(x float32) float32 {
 	return er.Coefficients[0] * float32(math.Exp(float64(er.Coefficients[1]*x)))
 }
 
 /*****************************
- * ExponentialRegression2D64 *
+ * ExponentialRegression64 *
  *****************************/
 
 //
-// ExponentialRegression2D64 contains methods for performing exponential regression on a
+// ExponentialRegression64 contains methods for performing exponential regression on a
 // two dimensional data set using 64 bit precission.
 //
-type ExponentialRegression2D64 struct {
+type ExponentialRegression64 struct {
 	Coefficients []float64
 }
 
 //
-// NewExponentialRegression2D64 creates an instance ExponentialRegression2D64.
+// NewExponentialRegression64 creates an instance ExponentialRegression64.
 //
-func NewExponentialRegression2D64() *ExponentialRegression2D64 {
-	return &ExponentialRegression2D64{
+func NewExponentialRegression64() *ExponentialRegression64 {
+	return &ExponentialRegression64{
 		Coefficients: []float64{0, 0},
 	}
 }
@@ -247,7 +247,7 @@ func NewExponentialRegression2D64() *ExponentialRegression2D64 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (er *ExponentialRegression2D64) Train(points *[]Point2D64) error {
+func (er *ExponentialRegression64) Train(points *[]Point64) error {
 
 	if len(*points) < 2 {
 		return ErrUndeterminedSystem
@@ -279,34 +279,34 @@ func (er *ExponentialRegression2D64) Train(points *[]Point2D64) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (er ExponentialRegression2D64) Predict(x float64) float64 {
+func (er ExponentialRegression64) Predict(x float64) float64 {
 	return er.Coefficients[0] * math.Exp(er.Coefficients[1]*x)
 }
 
 /****************************
- * PolynomialRegression2D32 *
+ * PolynomialRegression32 *
  ****************************/
 
 //
-// PolynomialRegression2D32 contains methods for performing polynomial regression on a
+// PolynomialRegression32 contains methods for performing polynomial regression on a
 // two dimensional data set using 32 bit precission.
 //
-type PolynomialRegression2D32 struct {
+type PolynomialRegression32 struct {
 	Order        int
 	Coefficients []float32
 }
 
 //
-// NewPolynomialRegression2D32 creates an instance PolynomialRegression2D32.
+// NewPolynomialRegression32 creates an instance PolynomialRegression32.
 //
-func NewPolynomialRegression2D32(order int) *PolynomialRegression2D32 {
+func NewPolynomialRegression32(order int) *PolynomialRegression32 {
 
 	coefficients := []float32{}
 	for i := 0; i <= order; i++ {
 		coefficients = append(coefficients, 0)
 	}
 
-	return &PolynomialRegression2D32{
+	return &PolynomialRegression32{
 		Order:        order,
 		Coefficients: coefficients,
 	}
@@ -316,7 +316,7 @@ func NewPolynomialRegression2D32(order int) *PolynomialRegression2D32 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (pr *PolynomialRegression2D32) Train(points *[]Point2D32) error {
+func (pr *PolynomialRegression32) Train(points *[]Point32) error {
 
 	for i := range pr.Coefficients {
 		pr.Coefficients[i] = 0
@@ -410,7 +410,7 @@ func (pr *PolynomialRegression2D32) Train(points *[]Point2D32) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (pr PolynomialRegression2D32) Predict(x float32) float32 {
+func (pr PolynomialRegression32) Predict(x float32) float32 {
 	var ret float32 = 0
 	for i, v := range pr.Coefficients {
 		ret += float32(math.Pow(float64(x), float64(i))) * v
@@ -419,29 +419,29 @@ func (pr PolynomialRegression2D32) Predict(x float32) float32 {
 }
 
 /****************************
- * PolynomialRegression2D64 *
+ * PolynomialRegression64 *
  ****************************/
 
 //
-// PolynomialRegression2D64 contains methods for performing polynomial regression on a
+// PolynomialRegression64 contains methods for performing polynomial regression on a
 // two dimensional data set using 64 bit precission.
 //
-type PolynomialRegression2D64 struct {
+type PolynomialRegression64 struct {
 	Order        int
 	Coefficients []float64
 }
 
 //
-// NewPolynomialRegression2D64 creates an instance PolynomialRegression2D64.
+// NewPolynomialRegression64 creates an instance PolynomialRegression64.
 //
-func NewPolynomialRegression2D64(order int) *PolynomialRegression2D64 {
+func NewPolynomialRegression64(order int) *PolynomialRegression64 {
 
 	coefficients := []float64{}
 	for i := 0; i <= order; i++ {
 		coefficients = append(coefficients, 0)
 	}
 
-	return &PolynomialRegression2D64{
+	return &PolynomialRegression64{
 		Order:        order,
 		Coefficients: coefficients,
 	}
@@ -451,7 +451,7 @@ func NewPolynomialRegression2D64(order int) *PolynomialRegression2D64 {
 //
 // Train calculates the coefficient vector from the provided data set.
 //
-func (pr *PolynomialRegression2D64) Train(points *[]Point2D64) error {
+func (pr *PolynomialRegression64) Train(points *[]Point64) error {
 
 	for i := range pr.Coefficients {
 		pr.Coefficients[i] = 0
@@ -545,7 +545,7 @@ func (pr *PolynomialRegression2D64) Train(points *[]Point2D64) error {
 //
 // Predict calculates the regression value at the given coordinate.
 //
-func (pr PolynomialRegression2D64) Predict(x float64) float64 {
+func (pr PolynomialRegression64) Predict(x float64) float64 {
 	var ret float64 = 0
 	for i, v := range pr.Coefficients {
 		ret += math.Pow(x, float64(i)) * v

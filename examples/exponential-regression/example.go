@@ -11,7 +11,7 @@ func main() {
 
 	points := 10
 
-	data := []regression.Point2D32{
+	data := []regression.Point32{
 		{X: 4, Y: 20},
 		{X: 4, Y: 30},
 		{X: 4, Y: 24},
@@ -26,7 +26,7 @@ func main() {
 		{X: 3, Y: 12},
 	}
 
-	regression32 := regression.NewExponentialRegression2D32()
+	regression32 := regression.NewExponentialRegression32()
 	err := regression32.Train(&data)
 	if err != nil {
 		log.Fatal(err)

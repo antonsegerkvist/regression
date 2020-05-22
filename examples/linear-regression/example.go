@@ -10,7 +10,7 @@ func main() {
 
 	points := 10
 
-	data := []regression.Point2D32{
+	data := []regression.Point32{
 		{X: 0, Y: 0},
 		{X: 0, Y: 1},
 		{X: 0, Y: 2},
@@ -25,7 +25,7 @@ func main() {
 		{X: 3, Y: 5},
 	}
 
-	regression32 := regression.NewLinearRegression2D32()
+	regression32 := regression.NewLinearRegression32()
 	regression32.Train(&data)
 
 	x := []float32{}

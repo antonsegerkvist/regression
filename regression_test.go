@@ -9,22 +9,22 @@ import (
 
 const PRECISSION_EPS = 0.0001
 
-func TestLinearRegression2D32(t *testing.T) {
+func TestLinearRegression32(t *testing.T) {
 
-	tests := [][]regression.Point2D32{
-		[]regression.Point2D32{
+	tests := [][]regression.Point32{
+		[]regression.Point32{
 			{X: 0, Y: 0},
 			{X: 1, Y: 1},
 		},
-		[]regression.Point2D32{
+		[]regression.Point32{
 			{X: 1, Y: 2},
 			{X: 2, Y: 3},
 		},
-		[]regression.Point2D32{
+		[]regression.Point32{
 			{X: 2, Y: 4},
 			{X: 3, Y: 5},
 		},
-		[]regression.Point2D32{
+		[]regression.Point32{
 			{X: 0, Y: 3},
 			{X: 1, Y: 3},
 			{X: 2, Y: 3},
@@ -39,7 +39,7 @@ func TestLinearRegression2D32(t *testing.T) {
 		3,
 	}
 
-	linearRegression := regression.NewLinearRegression2D32()
+	linearRegression := regression.NewLinearRegression32()
 
 	for i, test := range tests {
 		linearRegression.Train(&test)
@@ -52,22 +52,22 @@ func TestLinearRegression2D32(t *testing.T) {
 
 }
 
-func TestLinearRegression2D64(t *testing.T) {
+func TestLinearRegression64(t *testing.T) {
 
-	tests := [][]regression.Point2D64{
-		[]regression.Point2D64{
+	tests := [][]regression.Point64{
+		[]regression.Point64{
 			{X: 0, Y: 0},
 			{X: 1, Y: 1},
 		},
-		[]regression.Point2D64{
+		[]regression.Point64{
 			{X: 1, Y: 2},
 			{X: 2, Y: 3},
 		},
-		[]regression.Point2D64{
+		[]regression.Point64{
 			{X: 2, Y: 4},
 			{X: 3, Y: 5},
 		},
-		[]regression.Point2D64{
+		[]regression.Point64{
 			{X: 0, Y: 3},
 			{X: 1, Y: 3},
 			{X: 2, Y: 3},
@@ -82,7 +82,7 @@ func TestLinearRegression2D64(t *testing.T) {
 		3,
 	}
 
-	linearRegression := regression.NewLinearRegression2D64()
+	linearRegression := regression.NewLinearRegression64()
 
 	for i, test := range tests {
 		linearRegression.Train(&test)
@@ -95,14 +95,14 @@ func TestLinearRegression2D64(t *testing.T) {
 
 }
 
-func TestExponentialRegression2D32(t *testing.T) {
+func TestExponentialRegression32(t *testing.T) {
 
-	tests := [][]regression.Point2D32{
-		[]regression.Point2D32{
+	tests := [][]regression.Point32{
+		[]regression.Point32{
 			{X: 1, Y: 1},
 			{X: 2, Y: 2},
 		},
-		[]regression.Point2D32{
+		[]regression.Point32{
 			{X: 1, Y: 3},
 			{X: 3, Y: 1},
 			{X: 4, Y: 2},
@@ -114,7 +114,7 @@ func TestExponentialRegression2D32(t *testing.T) {
 		3.050905515,
 	}
 
-	exponentialRegression := regression.NewExponentialRegression2D32()
+	exponentialRegression := regression.NewExponentialRegression32()
 
 	for i, test := range tests {
 		err := exponentialRegression.Train(&test)
@@ -130,14 +130,14 @@ func TestExponentialRegression2D32(t *testing.T) {
 
 }
 
-func TestExponentialRegression2D64(t *testing.T) {
+func TestExponentialRegression64(t *testing.T) {
 
-	tests := [][]regression.Point2D64{
-		[]regression.Point2D64{
+	tests := [][]regression.Point64{
+		[]regression.Point64{
 			{X: 1, Y: 1},
 			{X: 2, Y: 2},
 		},
-		[]regression.Point2D64{
+		[]regression.Point64{
 			{X: 1, Y: 3},
 			{X: 3, Y: 1},
 			{X: 4, Y: 2},
@@ -149,7 +149,7 @@ func TestExponentialRegression2D64(t *testing.T) {
 		3.050905515,
 	}
 
-	exponentialRegression := regression.NewExponentialRegression2D64()
+	exponentialRegression := regression.NewExponentialRegression64()
 
 	for i, test := range tests {
 		err := exponentialRegression.Train(&test)
@@ -165,14 +165,14 @@ func TestExponentialRegression2D64(t *testing.T) {
 
 }
 
-func TestPolynomialRegression2D32(t *testing.T) {
+func TestPolynomialRegression32(t *testing.T) {
 
 	testOrders := []int{
 		2,
 	}
 
-	tests := [][]regression.Point2D32{
-		[]regression.Point2D32{
+	tests := [][]regression.Point32{
+		[]regression.Point32{
 			{X: 1, Y: 1},
 			{X: 2, Y: 2},
 			{X: 3, Y: 1},
@@ -184,7 +184,7 @@ func TestPolynomialRegression2D32(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		polynomialRegression := regression.NewPolynomialRegression2D32(testOrders[i])
+		polynomialRegression := regression.NewPolynomialRegression32(testOrders[i])
 
 		err := polynomialRegression.Train(&test)
 		if err != nil {
@@ -199,14 +199,14 @@ func TestPolynomialRegression2D32(t *testing.T) {
 
 }
 
-func TestPolynomialRegression2D64(t *testing.T) {
+func TestPolynomialRegression64(t *testing.T) {
 
 	testOrders := []int{
 		2,
 	}
 
-	tests := [][]regression.Point2D64{
-		[]regression.Point2D64{
+	tests := [][]regression.Point64{
+		[]regression.Point64{
 			{X: 1, Y: 1},
 			{X: 2, Y: 2},
 			{X: 3, Y: 1},
@@ -218,7 +218,7 @@ func TestPolynomialRegression2D64(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		polynomialRegression := regression.NewPolynomialRegression2D64(testOrders[i])
+		polynomialRegression := regression.NewPolynomialRegression64(testOrders[i])
 
 		err := polynomialRegression.Train(&test)
 		if err != nil {
