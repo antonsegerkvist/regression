@@ -11,7 +11,7 @@ func main() {
 
 	points := 10
 
-	data := []regression.Point2D64{
+	data := []regression.Point2D32{
 		{X: 0, Y: -1},
 		{X: 0, Y: 0},
 		{X: 0, Y: 2},
@@ -26,17 +26,17 @@ func main() {
 		{X: 3, Y: 2},
 	}
 
-	regression32 := regression.NewPolynomialRegression2D64(10)
+	regression32 := regression.NewPolynomialRegression2D32(10)
 	err := regression32.Train(&data)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	x := []float64{}
-	y := []float64{}
+	x := []float32{}
+	y := []float32{}
 	for i := 0; i < points; i++ {
-		x = append(x, 4.0/float64(points)*float64(i))
-		y = append(y, regression32.Predict(4.0/float64(points)*float64(i)))
+		x = append(x, 4.0/float32(points)*float32(i))
+		y = append(y, regression32.Predict(4.0/float32(points)*float32(i)))
 	}
 
 	for _, v := range x {
