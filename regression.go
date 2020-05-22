@@ -672,3 +672,126 @@ func (lr *LogarithmicRegression64) Train(points *[]Point64) error {
 func (lr LogarithmicRegression64) Predict(x float64) float64 {
 	return lr.Coefficients[0] + lr.Coefficients[1]*math.Log(x)
 }
+
+/****************************
+ * PowerRegression32 *
+ ****************************/
+
+//
+// PowerRegression32 contains methods for performing power regression on a
+// two dimensional data set using 32 bit precission.
+//
+type PowerRegression32 struct {
+	Coefficients []float32
+}
+
+//
+// NewPowerRegression32 creates an instance PowerRegression32.
+//
+func NewPowerRegression32() *PowerRegression32 {
+	return &PowerRegression32{
+		Coefficients: []float32{0, 0},
+	}
+}
+
+//
+// Train calculates the coefficient vector from the provided data set.
+//
+func (lr *PowerRegression32) Train(points *[]Point32) error {
+
+	if len(*points) < 2 {
+		return ErrUndeterminedSystem
+	}
+
+	n := float32(len(*points))
+
+	var ySum float32 = 0
+	var xSum float32 = 0
+	var x2Sum float32 = 0
+	var xySum float32 = 0
+
+	for _, v := range *points {
+		logX := float32(math.Log(float64(v.X)))
+		logY := float32(math.Log(float64(v.Y)))
+
+		ySum += logY
+		xSum += logX
+		x2Sum += logX * logX
+		xySum += logX * logY
+	}
+
+	var denominator = n*x2Sum - xSum*xSum
+
+	lr.Coefficients[0] = float32(math.Exp(float64((ySum*x2Sum - xSum*xySum) / denominator)))
+	lr.Coefficients[1] = (n*xySum - xSum*ySum) / denominator
+
+	return nil
+
+}
+
+//
+// Predict calculates the regression value at the given coordinate.
+//
+func (lr PowerRegression32) Predict(x float32) float32 {
+	return lr.Coefficients[0] * float32(math.Pow(float64(x), float64(lr.Coefficients[1])))
+}
+
+/****************************
+ * PowerRegression64 *
+ ****************************/
+
+//
+// PowerRegression64 contains methods for performing power regression on a
+// two dimensional data set using 64 bit precission.
+//
+type PowerRegression64 struct {
+	Coefficients []float64
+}
+
+//
+// NewPowerRegression64 creates an instance PowerRegression64.
+//
+func NewPowerRegression64() *PowerRegression64 {
+	return &PowerRegression64{
+		Coefficients: []float64{0, 0},
+	}
+}
+
+//
+// Train calculates the coefficient vector from the provided data set.
+//
+func (lr *PowerRegression64) Train(points *[]Point64) error {
+
+	if len(*points) < 2 {
+		return ErrUndeterminedSystem
+	}
+
+	n := float64(len(*points))
+
+	var ySum float64 = 0
+	var xSum float64 = 0
+	var x2Sum float64 = 0
+	var xySum float64 = 0
+
+	for _, v := range *points {
+		ySum += math.Log(v.Y)
+		xSum += math.Log(v.X)
+		x2Sum += math.Log(v.X) * math.Log(v.X)
+		xySum += math.Log(v.X) * math.Log(v.Y)
+	}
+
+	var denominator = n*x2Sum - xSum*xSum
+
+	lr.Coefficients[0] = math.Exp((ySum*x2Sum - xSum*xySum) / denominator)
+	lr.Coefficients[1] = (n*xySum - xSum*ySum) / denominator
+
+	return nil
+
+}
+
+//
+// Predict calculates the regression value at the given coordinate.
+//
+func (lr PowerRegression64) Predict(x float64) float64 {
+	return lr.Coefficients[0] * math.Pow(x, lr.Coefficients[1])
+}
