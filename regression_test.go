@@ -164,3 +164,37 @@ func TestExponentialRegression2D64(t *testing.T) {
 	}
 
 }
+
+func TestPolynomialRegression2D64(t *testing.T) {
+
+	testOrders := []int{
+		2,
+	}
+
+	tests := [][]regression.Point2D64{
+		[]regression.Point2D64{
+			{X: 1, Y: 1},
+			{X: 2, Y: 2},
+			{X: 3, Y: 1},
+		},
+	}
+
+	predictions := []float64{
+		0,
+	}
+
+	for i, test := range tests {
+		polynomialRegression := regression.NewPolynomialRegression2D64(testOrders[i])
+
+		err := polynomialRegression.Train(&test)
+		if err != nil {
+			t.Errorf("Got prediction error; expected prediction %f", predictions[i])
+		}
+		prediction := polynomialRegression.Predict(0)
+
+		if math.Abs(prediction-predictions[i]) >= PRECISSION_EPS {
+			t.Errorf("Got prediction %f; expected prediction %f", prediction, predictions[i])
+		}
+	}
+
+}
