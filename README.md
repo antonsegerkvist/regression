@@ -16,6 +16,7 @@ or use your favorite dependency management tool.
 - [Linear](#regressionLinear)
 - [Polynomial](#regressionPolynomial)
 - [Exponential](#regressionExponential)
+- [Logarithmic](#regressionLogarithmic)
 
 <a name="regressionLinear" href="#regressionLinear">#</a> regression.<b>NewLinearRegression32</b>() ·
 [Source](https://github.com/antonsegerkvist/regression/blob/master/regression.go "Source"),
@@ -54,3 +55,15 @@ Creates a new polynomial regression structure of order ```order``` and with a ze
 Creates a new exponential regression structure with a zero coefficient vector.
 
 ![Exponential regression](assets/exponential-regression.png "Exponential regression")
+
+<a name="regressionLogarithmic" href="#regressionLogarithmic">#</a> regression.<b>NewLogarithmicRegression32</b>() ·
+[Source](https://github.com/antonsegerkvist/regression/blob/master/regression.go "Source"),
+[Example](https://github.com/antonsegerkvist/regression/blob/master/examples "Example")
+<br>
+<a href="#regressionLogarithmic">#</a> regression.<b>NewLogarithmicRegression64</b>() ·
+[Source](https://github.com/antonsegerkvist/regression/blob/master/regression.go "Source"),
+[Example](https://github.com/antonsegerkvist/regression/blob/master/examples "Example")
+
+Creates a new logarithmic regression structure with a zero coefficient vector.
+
+![Logarithmic regression](assets/logarithmic-regression.png "Logarithmic regression")
