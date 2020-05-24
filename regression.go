@@ -201,10 +201,12 @@ func (er *ExponentialRegression32) Train(points *[]Point32) error {
 	var xySum float32 = 0
 
 	for _, v := range *points {
-		ySum += float32(math.Log(float64(v.Y)))
+		logY := float32(math.Log(float64(v.Y)))
+
+		ySum += logY
 		xSum += v.X
 		x2Sum += v.X * v.X
-		xySum += v.X * float32(math.Log(float64(v.Y)))
+		xySum += v.X * logY
 	}
 
 	var denominator = n*x2Sum - xSum*xSum
@@ -261,10 +263,12 @@ func (er *ExponentialRegression64) Train(points *[]Point64) error {
 	var xySum float64 = 0
 
 	for _, v := range *points {
-		ySum += math.Log(v.Y)
+		logY := math.Log(v.Y)
+
+		ySum += logY
 		xSum += v.X
 		x2Sum += v.X * v.X
-		xySum += v.X * math.Log(v.Y)
+		xySum += v.X * logY
 	}
 
 	var denominator = n*x2Sum - xSum*xSum
@@ -591,10 +595,12 @@ func (lr *LogarithmicRegression32) Train(points *[]Point32) error {
 	var xySum float32 = 0
 
 	for _, v := range *points {
+		logX := float32(math.Log(float64(v.X)))
+
 		ySum += v.Y
-		xSum += float32(math.Log(float64(v.X)))
-		x2Sum += float32(math.Log(float64(v.X))) * float32(math.Log(float64(v.X)))
-		xySum += float32(math.Log(float64(v.X))) * v.Y
+		xSum += logX
+		x2Sum += logX * logX
+		xySum += logX * v.Y
 	}
 
 	var denominator = n*x2Sum - xSum*xSum
@@ -651,10 +657,12 @@ func (lr *LogarithmicRegression64) Train(points *[]Point64) error {
 	var xySum float64 = 0
 
 	for _, v := range *points {
+		logX := math.Log(v.X)
+
 		ySum += v.Y
-		xSum += math.Log(v.X)
-		x2Sum += math.Log(v.X) * math.Log(v.X)
-		xySum += math.Log(v.X) * v.Y
+		xSum += logX
+		x2Sum += logX * logX
+		xySum += logX * v.Y
 	}
 
 	var denominator = n*x2Sum - xSum*xSum
@@ -774,10 +782,13 @@ func (lr *PowerRegression64) Train(points *[]Point64) error {
 	var xySum float64 = 0
 
 	for _, v := range *points {
-		ySum += math.Log(v.Y)
-		xSum += math.Log(v.X)
-		x2Sum += math.Log(v.X) * math.Log(v.X)
-		xySum += math.Log(v.X) * math.Log(v.Y)
+		logX := math.Log(v.X)
+		logY := math.Log(v.Y)
+
+		ySum += logY
+		xSum += logX
+		x2Sum += logX * logX
+		xySum += logX * logY
 	}
 
 	var denominator = n*x2Sum - xSum*xSum
