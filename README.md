@@ -16,9 +16,9 @@ or use your favorite dependency management tool.
 
 All the regression structures has a similar API. The regression structure is best
 created using the constructor methods, ex ```NewLinearRegression32```. Following
-that the structure is trained using the method ```regressionStrcture.Train(data)```
+that the structure is trained using the method ```regressionStructure.Train(data)```
 and then the regressed values can be calculated at any ```x``` value using the
-```regressionStrcture.Predict``` method.
+```regressionStructure.Predict``` method.
 
 ### Example
 
